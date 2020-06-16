@@ -5,8 +5,8 @@ mkdir -p /datamongo/{db,logs}
 InsDir=/usr/local/mongodb-linux-x86_64-4.0.4
 
 cd $InsDir
-mkdir etc/  && cd etc/ && touch mongodb.conf 
-cat >$InsDir/etc/mongodb.conf<<EOF
+mkdir conf/  && cd conf/ && touch mongodb.conf 
+cat >$InsDir/conf/mongodb.conf<<EOF
 port=27017 #端口
 dbpath= /datamongo/db #数据库存文件存放目录
 logpath= /datamongo/logs/mongodb.log #日志文件存放路径
@@ -22,7 +22,7 @@ bind_ip = 0.0.0.0  #这样就可外部访问了，例如从win10中去连虚拟�
 EOF
 
 #启动mongodb
-$InsDir/bin/mongod -f $InsDir/etc/mongodb.conf
+$InsDir/bin/mongod -f $InsDir/conf/mongodb.conf
 
 #添加环境变量
 cat >>/etc/profile<<EOF
@@ -30,4 +30,4 @@ cat >>/etc/profile<<EOF
 PATH=\${PATH}:$InsDir/bin
 EOF
 #使配置生效
-source /etc/profile >/dev/null 2>&1
+source /etc/profile 
